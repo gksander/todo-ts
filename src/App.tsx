@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { transporter } from "./api/transporter";
 
 interface ITodo {
   id: string;
@@ -17,9 +18,10 @@ const App: React.FC = () => {
    * On mount, fetch some todos
    */
   useEffect(() => {
-    fetch("/api/todos/all")
-      .then(res => res.json())
-      .then(res => setTodos(res.todos));
+    transporter
+      .get("/todos/all")
+      .then(res => res.data)
+      .then(data => setTodos(data.todos));
   }, []);
 
   /**
@@ -30,8 +32,8 @@ const App: React.FC = () => {
 
     setIsWorking(true);
 
-    return axios
-      .post("/api/todos", {
+    return transporter
+      .post("todos", {
         title: newTodo,
       })
       .then(res => res.data)
@@ -48,11 +50,11 @@ const App: React.FC = () => {
    * Mark complete
    */
   const markTodoComplete = (id: string, val: boolean) => {
-    return axios
-      .put(`/api/todos/${id}`, { isCompleted: val })
+    return transporter
+      .put(`/todos/${id}`, { isCompleted: val })
       .then(res => res.data)
       .then(data => {
-        setTodos(prevVal => prevVal.map(todo => todo.id === id ? data.todo : todo))
+        setTodos(prevVal => prevVal.map(todo => (todo.id === id ? data.todo : todo)));
       });
   };
 
@@ -60,11 +62,10 @@ const App: React.FC = () => {
    * Delete a TODO
    */
   const deleteTodo = (id: string) => {
-    return axios.delete(`/api/todos/${id}`)
-      .then(() => {
-        setTodos(prevVal => prevVal.filter(todo => todo.id !== id))
-      })
-  }
+    return transporter.delete(`/todos/${id}`).then(() => {
+      setTodos(prevVal => prevVal.filter(todo => todo.id !== id));
+    });
+  };
 
   return (
     <div className="App">
@@ -75,7 +76,9 @@ const App: React.FC = () => {
             <button type="button" onClick={() => markTodoComplete(todo.id, !todo.isCompleted)}>
               {todo.isCompleted ? "Uncheck" : "Check"}
             </button>
-            <button type="button" onClick={() => deleteTodo(todo.id)}>Delete</button>
+            <button type="button" onClick={() => deleteTodo(todo.id)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
