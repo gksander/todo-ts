@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {createMockApi} from "./mock-api";
+
+// Mock API
+createMockApi();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
