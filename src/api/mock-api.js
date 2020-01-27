@@ -1,4 +1,4 @@
-import { Server, Model, Factory } from "miragejs";
+import {Factory, Model, Server} from "miragejs";
 import faker from "faker";
 
 export const createMockApi = () => {
@@ -51,23 +51,35 @@ export const createMockApi = () => {
       });
 
       // Create a to-do
-      this.post("/todos", (schema, request) => {
-        const { title = "" } = JSON.parse(request.requestBody);
-        return schema.todos.create({ title, isCompleted: false })
-      });
+      this.post(
+        "/todos",
+        (schema, request) => {
+          const { title = "" } = JSON.parse(request.requestBody);
+          return schema.todos.create({ title, isCompleted: false });
+        },
+        { timing: 600 },
+      );
 
       // Update a to-do
-      this.put("/todos/:id", (schema, request) => {
-        const todo = schema.todos.find(request.params.id);
-        const body = JSON.parse(request.requestBody);
-        return todo.update(body);
-      })
+      this.put(
+        "/todos/:id",
+        (schema, request) => {
+          const todo = schema.todos.find(request.params.id);
+          const body = JSON.parse(request.requestBody);
+          return todo.update(body);
+        },
+        { timing: 300 },
+      );
 
       // Delete a to-do
-      this.del("/todos/:id", (schema, request) => {
-        const todo = schema.todos.find(request.params.id);
-        return todo.destroy();
-      })
+      this.del(
+        "/todos/:id",
+        (schema, request) => {
+          const todo = schema.todos.find(request.params.id);
+          return todo.destroy();
+        },
+        { timing: 300 },
+      );
     },
   });
 
