@@ -1,12 +1,12 @@
 /**
  * To-do shape
  */
-import {Action, createAsyncAction, createReducer} from "typesafe-actions";
-import {ThunkAction} from "redux-thunk";
-import {cloneDeep} from "lodash";
-import {transporter} from "../api/transporter";
-import {combineReducers} from "redux";
-import {IRootState} from "../store";
+import { Action, createAsyncAction, createReducer } from "typesafe-actions";
+import { ThunkAction } from "redux-thunk";
+import { cloneDeep } from "lodash";
+import { transporter } from "../api/transporter";
+import { combineReducers } from "redux";
+import { IRootState } from "../store";
 
 export interface ITodo {
   id: string;

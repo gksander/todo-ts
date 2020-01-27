@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {deleteTodo, ITodo, toggleTodoStatus} from "../modules/todos.module";
-import {useDispatch} from "react-redux";
+import React, { useState } from "react";
+import { deleteTodo, ITodo, toggleTodoStatus } from "../modules/todos.module";
+import { useDispatch } from "react-redux";
 
 /**
  * Displaying a To-do item

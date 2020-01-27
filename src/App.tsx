@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { transporter } from "./api/transporter";
-import { createTodo, fetchTodos, ITodo } from "./modules/todos.module";
-import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "./store";
-import { TodoItem } from "./components/TodoItem";
-import { NewTodo } from "./components/NewTodo";
+import React, {useEffect} from "react";
+import {fetchTodos, ITodo} from "./modules/todos.module";
+import {useDispatch, useSelector} from "react-redux";
+import {IRootState} from "./store";
+import {TodoItem} from "./components/TodoItem";
+import {NewTodo} from "./components/NewTodo";
+import {Box} from "@chakra-ui/core/dist";
 
 const App: React.FC = () => {
   // Util
@@ -31,14 +31,16 @@ const App: React.FC = () => {
    * Show items
    */
   return (
-    <div className="App">
-      <ul>
-        {items.map(todo => (
-          <TodoItem item={todo} key={todo.id} />
-        ))}
-      </ul>
-      <NewTodo />
-    </div>
+    <Box bg="lightblue" mx="auto" maxWidth="md" my={[0, 4]}>
+      <div className="App">
+        <ul>
+          {items.map(todo => (
+            <TodoItem item={todo} key={todo.id} />
+          ))}
+        </ul>
+        <NewTodo />
+      </div>
+    </Box>
   );
 };
 
