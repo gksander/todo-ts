@@ -1,4 +1,4 @@
-import {Factory, Model, Server} from "miragejs";
+import { Factory, Model, Server } from "miragejs";
 import faker from "faker";
 
 export const createMockApi = () => {

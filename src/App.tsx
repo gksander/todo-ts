@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
-import {fetchTodos, ITodo} from "./modules/todos.module";
-import {useDispatch, useSelector} from "react-redux";
-import {IRootState} from "./store";
-import {TodoItem} from "./components/TodoItem";
-import {NewTodo} from "./components/NewTodo";
-import {Box} from "@chakra-ui/core/dist";
+import React, { useEffect } from "react";
+import { fetchTodos, ITodo } from "./modules/todos.module";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "./store";
+import { TodoItem } from "./components/TodoItem";
+import { NewTodo } from "./components/NewTodo";
+import { Box } from "@chakra-ui/core/dist";
 
 const App: React.FC = () => {
   // Util

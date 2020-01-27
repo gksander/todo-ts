@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import {createMockApi} from "./api/mock-api";
-import {store} from "./store";
-import {CSSReset, ThemeProvider} from "@chakra-ui/core";
-import {theme} from "./app-theme";
+import { createMockApi } from "./api/mock-api";
+import { store } from "./store";
+import { CSSReset, ThemeProvider } from "@chakra-ui/core";
+import { theme } from "./app-theme";
 
 // Mock API
 createMockApi();
