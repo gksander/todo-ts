@@ -1,7 +1,7 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
-import {todos} from "./modules/todos.module";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import { todos } from "./modules/todos.module";
 import thunk from "redux-thunk";
-import {persistReducer, persistStore} from "redux-persist";
+import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
 // Create root store

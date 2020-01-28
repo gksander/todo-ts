@@ -1,6 +1,6 @@
-import {Action, createAction, createReducer} from "typesafe-actions";
-import {IRootState} from "../store";
-import {uuid} from "uuidv4";
+import { Action, createAction, createReducer } from "typesafe-actions";
+import { IRootState } from "../store";
+import { uuid } from "uuidv4";
 
 /**
  * Types

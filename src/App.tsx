@@ -1,10 +1,10 @@
 import React from "react";
-import {useSelector} from "react-redux";
-import {IRootState} from "./store";
-import {TodoItem} from "./components/TodoItem";
-import {NewTodo} from "./components/NewTodo";
-import {Box} from "@chakra-ui/core/dist";
-import {ITodo, selectTodosAsArray} from "./modules/todos.module";
+import { useSelector } from "react-redux";
+import { IRootState } from "./store";
+import { TodoItem } from "./components/TodoItem";
+import { NewTodo } from "./components/NewTodo";
+import { Box } from "@chakra-ui/core/dist";
+import { ITodo, selectTodosAsArray } from "./modules/todos.module";
 
 const App: React.FC = () => {
   // Selectors
