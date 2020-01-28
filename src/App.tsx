@@ -1,31 +1,14 @@
-import React, { useEffect } from "react";
-import { fetchTodos, ITodo } from "./modules/todos.module";
-import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "./store";
-import { TodoItem } from "./components/TodoItem";
-import { NewTodo } from "./components/NewTodo";
-import { Box } from "@chakra-ui/core/dist";
+import React from "react";
+import {useSelector} from "react-redux";
+import {IRootState} from "./store";
+import {TodoItem} from "./components/TodoItem";
+import {NewTodo} from "./components/NewTodo";
+import {Box} from "@chakra-ui/core/dist";
+import {ITodo, selectTodosAsArray} from "./modules/todos.module";
 
 const App: React.FC = () => {
-  // Util
-  const dispatch = useDispatch();
   // Selectors
-  const isLoadingItems = useSelector<IRootState, boolean>(state => state.todos.isLoadingItems);
-  const items = useSelector<IRootState, ITodo[]>(state => state.todos.items);
-
-  /**
-   * On mount, fetch some todos
-   */
-  useEffect(() => {
-    dispatch(fetchTodos());
-  }, [dispatch]);
-
-  /**
-   * Loading
-   */
-  if (isLoadingItems) {
-    return <div>LOADING!</div>;
-  }
+  const items = useSelector<IRootState, ITodo[]>(selectTodosAsArray);
 
   /**
    * Show items

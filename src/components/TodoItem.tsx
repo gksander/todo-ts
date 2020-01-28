@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { deleteTodo, ITodo, toggleTodoStatus } from "../modules/todos.module";
-import { useDispatch } from "react-redux";
+import React from "react";
+import {useDispatch} from "react-redux";
+import {deleteTodo, ITodo, updateTodo} from "../modules/todos.module";
 
 /**
  * Displaying a To-do item
@@ -8,31 +8,24 @@ import { useDispatch } from "react-redux";
 export const TodoItem: React.FC<{ item: ITodo }> = ({ item }) => {
   // Util
   const dispatch = useDispatch();
-  // Local state
-  const [isTogglingState, setIsTogglingState] = useState<boolean>(false);
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
   /**
    * Delete
    */
   const deleteItem = async () => {
-    if (isDeleting) return;
-    setIsDeleting(true);
-    try {
-      await dispatch(deleteTodo(item.id));
-    } catch (_) {}
+    dispatch(deleteTodo(item.id));
   };
 
   /**
    * Toggle state
    */
   const toggleState = async () => {
-    if (isTogglingState) return;
-    setIsTogglingState(true);
-    try {
-      await dispatch(toggleTodoStatus(item.id, !item.isCompleted));
-    } catch (_) {}
-    setIsTogglingState(false);
+    dispatch(
+      updateTodo({
+        ...item,
+        isCompleted: !item.isCompleted,
+      }),
+    );
   };
 
   /**

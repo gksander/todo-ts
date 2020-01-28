@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createTodo } from "../modules/todos.module";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {createTodo} from "../modules/todos.module";
 
 /**
  * Create a new to-do
@@ -9,26 +9,20 @@ export const NewTodo: React.FC = () => {
   // Util
   const dispatch = useDispatch();
   // Local state
-  const [isWorking, setIsWorking] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
 
   /**
-   * Create todo
+   * Create to-do
    */
   const createTheTodo = async () => {
-    if (isWorking) return;
-
-    setIsWorking(true);
-    try {
-      await dispatch(createTodo(title));
-    } catch (_) {}
-    setIsWorking(false);
+    dispatch(createTodo(title));
+    setTitle("");
   };
 
   return (
     <div>
-      <input type="text" value={title} onChange={e => setTitle(e.target.value)} disabled={isWorking} />
-      <button type="button" disabled={!title.trim() || isWorking} onClick={createTheTodo}>
+      <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
+      <button type="button" disabled={!title.trim()} onClick={createTheTodo}>
         Submit
       </button>
     </div>
